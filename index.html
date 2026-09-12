@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Surprise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Parisienne&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="stage" id="stage">
+
+  <!-- background sparkle layer, filled by JS -->
+  <div class="sparkle-layer" id="sparkleLayer"></div>
+
+  <!-- floating hearts / confetti layer, filled by JS -->
+  <div class="fx-layer" id="fxLayer"></div>
+
+  <!-- BACK button, shown on every screen except the home menu -->
+  <button class="back-btn" id="backBtn" onclick="goBack()">‹ back</button>
+
+  <!-- ============= GREETING (SLIDE PERTAMA) ============= -->
+  <section class="screen active" data-screen="greeting" id="screen-greeting">
+    <div class="float-emoji" style="top:10%; left:10%;">🎈</div>
+    <div class="float-emoji" style="top:14%; right:10%; animation-delay:1s;">🎂</div>
+    <div class="float-emoji" style="bottom:16%; left:14%; animation-delay:2s;">✨</div>
+
+    <p class="eyebrow" id="greetingEyebrow">a little something for you</p>
+    <h1 class="greeting-title" id="greetingTitle">Happy Birthday</h1>
+    <h2 class="greeting-name" id="greetingName">Nama Kamu</h2>
+    <p class="greeting-sub" id="greetingSub">semoga hari ini penuh senyum dan kebahagiaan</p>
+
+    <button class="btn-continue" id="continueBtn">Buka Surprise ›</button>
+  </section>
+
+  <!-- ============= HOME: CHOOSE THE SURPRISE ============= -->
+  <section class="screen" data-screen="home" id="screen-home">
+    <p class="eyebrow" id="eyebrowText">a little something for you</p>
+    <h1 class="title" id="homeTitle">Choose the Surprise</h1>
+
+    <div class="menu-grid">
+      <button class="menu-card" data-target="memory">
+        <span class="menu-icon">📷</span>
+        <span class="menu-label">Memory</span>
+      </button>
+      <button class="menu-card" data-target="note">
+        <span class="menu-icon">💌</span>
+        <span class="menu-label">A Moment</span>
+      </button>
+      <button class="menu-card" data-target="music">
+        <span class="menu-icon">🎵</span>
+        <span class="menu-label">Music</span>
+      </button>
+      <button class="menu-card" data-target="envelope">
+        <span class="menu-icon">🎁</span>
+        <span class="menu-label">Envelope</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============= MEMORY (SCRAPBOOK) ============= -->
+  <section class="screen" data-screen="memory" id="screen-memory">
+    <p class="eyebrow">a few frames worth keeping</p>
+    <h2 class="title small">Memory</h2>
+    <p class="memory-note" id="memoryNote"></p>
+    <div class="scrapbook-grid" id="scrapbookGrid"><!-- diisi oleh script.js dari config.foto --></div>
+  </section>
+
+  <!-- ============= MUSIC (VINYL PLAYER) ============= -->
+  <section class="screen" data-screen="music" id="screen-music">
+    <p class="eyebrow">turn it up, just a little</p>
+    <h2 class="title small">Music</h2>
+
+    <div class="player-card">
+      <div class="vinyl-wrap">
+        <div class="vinyl" id="vinyl">
+          <div class="vinyl-label" id="vinylLabel">♪</div>
+        </div>
+        <div class="tonearm" id="tonearm"></div>
+      </div>
+
+      <div class="track-info">
+        <div class="track-title" id="trackTitle">—</div>
+        <div class="track-artist" id="trackArtist">—</div>
+      </div>
+
+      <div class="progress-row">
+        <span class="time" id="timeCurrent">0:00</span>
+        <input type="range" id="seekBar" class="seek-bar" value="0" min="0" max="100" step="0.1">
+        <span class="time" id="timeTotal">0:00</span>
+      </div>
+
+      <div class="controls-row">
+        <button class="ctrl-btn" id="prevBtn" title="Previous">⏮</button>
+        <button class="ctrl-btn play" id="playBtn" title="Play">▶</button>
+        <button class="ctrl-btn" id="nextBtn" title="Next">⏭</button>
+      </div>
+
+      <p class="music-warning" id="musicWarning" hidden>Masukkan lagu ke folder assets/audio/</p>
+    </div>
+
+    <audio id="audioEl" preload="metadata"></audio>
+  </section>
+
+  <!-- ============= A LITTLE NOTE ============= -->
+  <section class="screen" data-screen="note" id="screen-note">
+    <p class="eyebrow">a moment, just for you</p>
+    <h2 class="title small">A Little Note</h2>
+
+    <div class="note-paper">
+      <p class="note-text" id="noteText"></p>
+      <span class="note-cursor" id="noteCursor">|</span>
+    </div>
+    <button class="skip-btn" id="skipBtn">skip ›</button>
+  </section>
+
+  <!-- ============= ENVELOPE ============= -->
+  <section class="screen" data-screen="envelope" id="screen-envelope">
+    <p class="eyebrow">one last thing</p>
+    <h2 class="title small" id="envelopeTitle">Press the Envelope</h2>
+
+    <div class="envelope-wrap" id="envelope">
+      <div class="envelope-back"></div>
+      <div class="letter-inside" id="letterInside">
+        <p class="secret-text" id="secretText"></p>
+      </div>
+      <div class="envelope-flap"></div>
+      <div class="envelope-front-left"></div>
+      <div class="envelope-front-right"></div>
+      <div class="seal">✦</div>
+    </div>
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
